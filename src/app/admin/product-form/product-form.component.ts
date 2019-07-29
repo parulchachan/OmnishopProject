@@ -12,7 +12,7 @@ import { Product } from 'src/app/models/product';
 })
 export class ProductFormComponent {
   categories$; 
-  product={};
+  product:Product;
   id;
   image;
   constructor(    

@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ShoppingCartService } from '../shopping-cart.service';
 import { ShoppingCart } from '../models/shopping-cart';
+import { Shipping } from '../models/shipping';
 import { OrderService } from '../order.service';
 import 'rxjs/add/operator/map'
 import { Order } from '../models/order';
@@ -14,7 +15,7 @@ import { Order } from '../models/order';
   styleUrls: ['./check-out.component.css']
 })
 export class CheckOutComponent implements OnInit, OnDestroy{ 
-  shipping = {};
+  shipping:Shipping;
   cart: ShoppingCart; 
   cartSubscription: Subscription;
   userSubscription: Subscription;

@@ -13,7 +13,7 @@ import { Product } from '../models/product';
 export class ProductDetailsComponent implements OnInit,OnDestroy {
   product: Product;
   id;
-  shoppingCart={};
+  shoppingCart:ShoppingCart;
   Subscription;
 
 
