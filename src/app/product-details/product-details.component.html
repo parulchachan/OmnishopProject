@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-6">
+        <div class="card " >
+            <img 
+                name="imageUrl" 
+                [src]="product.imageUrl" 
+                class="card-img-top zoom">
+        </div>
+
+    </div>
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">{{product.title}}</h3>
+                <h6 class="card-subtitle mb-2 ">Sold By- {{product.seller}} </h6>
+                <br>
+                <h5 class="card-subtitle mb-2 ">{{product.price | currency:"₹":"symbol"}}</h5>
+                <br>
+                <h6 *ngIf="product.material" class="font-weight-bold">Material-</h6>
+                <p  *ngIf="product.material"
+                    class="" 
+                    style="white-space: pre-line">
+                    {{product.material}}
+                </p>
+                <h6 class="font-weight-bold">Description-</h6>
+                <p 
+                    class="" 
+                    style="white-space: pre-line">
+                    {{product.description}}
+                </p>
+            </div>
+            <div *ngIf="shoppingCart" class="card-footer">
+                    <button
+                        *ngIf="shoppingCart.getQuantity(product) === 0;else updateQuantity"
+                        (click)="addToCart()"  
+                        class="btn btn-primary btn-block">Add to Cart
+                    </button>
+    
+                    <ng-template #updateQuantity>
+                        <a
+                            routerLink="/shopping-cart" 
+                            class="btn btn-primary btn-block pt=5px">Go to Cart
+                        </a>
+                    </ng-template> 
+                     
+            </div>
+        </div>    
+
+    </div>
+</div>

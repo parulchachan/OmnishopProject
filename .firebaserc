@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "project-oshop-parul",
+    "production": "project-oshop-parul"
+  },
+  "targets": {
+    "project-oshop-parul": {
+      "hosting": {
+        "Project": [
+          "project-oshop-parul"
+        ]
+      }
+    }
+  }
+}

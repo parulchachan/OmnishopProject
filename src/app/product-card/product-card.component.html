@@ -1,0 +1,26 @@
+<div class="card" style="width:20rem;">
+    <div style="">
+            <img 
+            [src]="product.imageUrl" 
+            class="card-img-top img-fluid .thumbnail"
+            style="height:20rem"
+            [routerLink]="['/products/',product.key]">
+    </div>
+    
+        
+        <div class="card-body">
+            <h5 class="card-title" style="min-height:40px; max-height: 40px">{{product.title}}</h5>
+            <h6 class="card-text">{{product.price | currency:"₹":"symbol"}}</h6>
+        </div>
+        <div *ngIf="shoppingCart" class="card-footer">
+                <button
+                    *ngIf="shoppingCart.getQuantity(product) === 0;else updateQuantity"
+                    (click)="addToCart()"  
+                    class="btn btn-secondary btn-block">Add to Cart
+                </button>
+
+                <ng-template #updateQuantity>
+                    <product-quantity [product]="product" [shopping-cart]="shoppingCart"></product-quantity>
+                </ng-template>  
+        </div>
+    </div>

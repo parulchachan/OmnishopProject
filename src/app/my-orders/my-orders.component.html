@@ -1,0 +1,50 @@
+<!-- 
+<div *ngFor ="let order of order$ | async" >
+    <p>
+        {{order.userId}}
+    </p>
+</div> -->
+
+<div class="accordion" id="accordion" >
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Order No.</th>
+                <th class="">Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody *ngFor ="let order of orders">
+            <tr>
+                <th>{{order.key}}</th>
+                <th>{{order.datePlaced | date:'mediumDate'}}</th>
+                <th>
+                    <a data-toggle="collapse" href="#{{order.key}}" aria-expanded="false">
+                        <span style="color: blue;">
+                            <i class="material-icons">visibility</i>
+                        </span>
+                    </a>
+                </th>
+            </tr>
+            <tr class="collapse" id="{{order.key}}">
+                   <label for="">  {{order.key}}</label>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="accordion" id="accordion">
+    <a 
+        href=""
+        class="card-header collapsed" 
+        data-toggle="collapse" 
+        data-target="#collapseOne" 
+        aria-expanded="true" 
+        aria-controls="collapseOne"
+        data-parent="#accordion">
+    </a>
+</div>
+
+
+
+    
