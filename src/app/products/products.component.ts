@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductService } from './../product.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ShoppingCart } from '../models/shopping-cart';
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 @Component({
@@ -20,8 +21,10 @@ export class ProductsComponent implements OnInit,OnDestroy {
   Subscription;
 
   constructor(route: ActivatedRoute,productService: ProductService, 
-    private shoppingCartService:ShoppingCartService){ 
+    private shoppingCartService:ShoppingCartService,
+    private spinner: NgxSpinnerService){ 
 
+    spinner.show();
     
     productService.getAll().snapshotChanges()
     .switchMap(list=>{
@@ -39,6 +42,7 @@ export class ProductsComponent implements OnInit,OnDestroy {
   async ngOnInit() {
     this.Subscription=(await this.shoppingCartService.getCart()).valueChanges().subscribe(cart=>{
       this.cart=new ShoppingCart(cart.items);
+      this.spinner.hide();
     });
   }
 

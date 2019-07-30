@@ -25,7 +25,6 @@ export class ProductDetailsComponent implements OnInit,OnDestroy {
       this.product = p;
       this.product.key=this.id;
     });
-    
    }
 
    async ngOnInit() {

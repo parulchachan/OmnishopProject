@@ -1,14 +1,14 @@
-<div class="row">
-    <div class="col-6">
-        <div class="card " >
+<div class="row" style="height:50rem">
+    <div class="col-md-6 col-12 mb-3" style="height:50rem">
+        <div class="card" >
             <img 
                 name="imageUrl" 
                 [src]="product.imageUrl" 
-                class="card-img-top zoom">
+                class="card-img-top zoom img-fluid img-responsive">
         </div>
 
     </div>
-    <div class="col-6">
+    <div class="col-md-6 col-12" style="height:50rem">
         <div class="card">
             <div class="card-body">
                 <h3 class="card-title">{{product.title}}</h3>
@@ -16,9 +16,8 @@
                 <br>
                 <h5 class="card-subtitle mb-2 ">{{product.price | currency:"₹":"symbol"}}</h5>
                 <br>
-                <h6 *ngIf="product.material" class="font-weight-bold">Material-</h6>
-                <p  *ngIf="product.material"
-                    class="" 
+                <h6  class="font-weight-bold">Material-</h6>
+                <p  
                     style="white-space: pre-line">
                     {{product.material}}
                 </p>
@@ -30,18 +29,18 @@
                 </p>
             </div>
             <div *ngIf="shoppingCart" class="card-footer">
-                    <button
-                        *ngIf="shoppingCart.getQuantity(product) === 0;else updateQuantity"
-                        (click)="addToCart()"  
-                        class="btn btn-primary btn-block">Add to Cart
-                    </button>
-    
-                    <ng-template #updateQuantity>
-                        <a
-                            routerLink="/shopping-cart" 
-                            class="btn btn-primary btn-block pt=5px">Go to Cart
-                        </a>
-                    </ng-template> 
+                <button
+                    *ngIf="shoppingCart.getQuantity(product) === 0;else updateQuantity"
+                    (click)="addToCart()"  
+                    class="btn btn-primary btn-block">Add to Cart
+                </button>
+
+                <ng-template #updateQuantity>
+                    <a
+                        routerLink="/shopping-cart" 
+                        class="btn btn-primary btn-block pt-5">Go to Cart
+                    </a>
+                </ng-template> 
                      
             </div>
         </div>    

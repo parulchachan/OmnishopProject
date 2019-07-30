@@ -3,6 +3,8 @@ import { OrderService } from '../order.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
 import { Order } from '../models/order';
+import { NgxSpinnerService } from "ngx-spinner";
+
 
 @Component({
   selector: 'app-my-orders',
@@ -15,7 +17,11 @@ export class MyOrdersComponent implements OnInit,OnDestroy {
   userId;
   orders: Order[];
   order$;
-  constructor(private orderService: OrderService,private authService: AuthService) { }
+
+  constructor(private orderService: OrderService,private authService: AuthService,
+    private spinner: NgxSpinnerService) {
+      spinner.show();
+     }
 
   async ngOnInit() {
     this.userSubscription=await this.authService.user$.subscribe(user=>this.userId=user.uid);
@@ -28,6 +34,7 @@ export class MyOrdersComponent implements OnInit,OnDestroy {
         return{ key: item.key,
         ...item.payload.val()};
         });
+        this.spinner.hide();
       });
   }
 

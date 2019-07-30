@@ -1,26 +1,27 @@
-<div class="card" style="width:20rem;">
-    <div style="">
+<div class="card">
+    <div style="height:15rem;" class="img-thumbnail">
+        <div style="vertical-align: middle">
             <img 
             [src]="product.imageUrl" 
-            class="card-img-top img-fluid .thumbnail"
-            style="height:20rem"
+            class="img-fluid img-responsive d-block mx-auto"
+            style=" max-height:14rem; ;"
             [routerLink]="['/products/',product.key]">
-    </div>
-    
-        
-        <div class="card-body">
-            <h5 class="card-title" style="min-height:40px; max-height: 40px">{{product.title}}</h5>
-            <h6 class="card-text">{{product.price | currency:"₹":"symbol"}}</h6>
         </div>
-        <div *ngIf="shoppingCart" class="card-footer">
-                <button
-                    *ngIf="shoppingCart.getQuantity(product) === 0;else updateQuantity"
-                    (click)="addToCart()"  
-                    class="btn btn-secondary btn-block">Add to Cart
-                </button>
 
-                <ng-template #updateQuantity>
-                    <product-quantity [product]="product" [shopping-cart]="shoppingCart"></product-quantity>
-                </ng-template>  
-        </div>
     </div>
+    <div class="card-body">
+        <h6 class="card-title" style="min-height:45px; max-height: 45px ">{{product.title}}</h6>
+        <p class="card-text" style="max-height: 10px">{{product.price | currency:"₹":"symbol"}}</p>
+    </div>
+
+    <div *ngIf="shoppingCart" class="card-footer">
+        <button
+            *ngIf="shoppingCart.getQuantity(product) === 0;else updateQuantity"
+            (click)="addToCart()"  
+            class="btn btn-secondary btn-block">Add to Cart
+        </button>
+        <ng-template #updateQuantity>
+            <product-quantity [product]="product" [shopping-cart]="shoppingCart"></product-quantity>
+        </ng-template>  
+    </div>
+</div>

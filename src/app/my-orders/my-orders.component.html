@@ -4,6 +4,7 @@
         {{order.userId}}
     </p>
 </div> -->
+<ngx-spinner></ngx-spinner>
 
 <div class="accordion" id="accordion" >
     <table class="table">
@@ -19,7 +20,7 @@
                 <th>{{order.key}}</th>
                 <th>{{order.datePlaced | date:'mediumDate'}}</th>
                 <th>
-                    <a data-toggle="collapse" href="#{{order.key}}" aria-expanded="false">
+                    <a data-toggle="collapse" href="#{{order.key}}" aria-expanded="true">
                         <span style="color: blue;">
                             <i class="material-icons">visibility</i>
                         </span>
@@ -27,24 +28,32 @@
                 </th>
             </tr>
             <tr class="collapse" id="{{order.key}}">
-                   <label for="">  {{order.key}}</label>
+                <td colspan="3">
+                <ul *ngFor ="let item of order.items" class="list-group">
+                    <li class="list-group-item">
+                        <div class="row no-gutters " style="width:inherit; height:100px;">
+                            <div class="col-3 img-thumbnail">
+                                <img src="{{item.product.imageUrl}}"  class=" img-fluid img-responsive d-block mx-auto"
+                                    style="height:100px; ">
+                            </div>
+                            <div class="col-1"></div>
+                            <div class="col-8">
+                                <div class="">
+                                    <h6 class="">{{item.product.title}}</h6>
+                                    <p class="text-muted">
+                                            Price: {{item.product.price | currency:"₹":"symbol"}} | Qty: {{item.quantity}}
+                                    </p>
+                                    <p class="">{{item.totalPrice | currency:"₹":"symbol"}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </td>
             </tr>
         </tbody>
     </table>
 </div>
-
-<div class="accordion" id="accordion">
-    <a 
-        href=""
-        class="card-header collapsed" 
-        data-toggle="collapse" 
-        data-target="#collapseOne" 
-        aria-expanded="true" 
-        aria-controls="collapseOne"
-        data-parent="#accordion">
-    </a>
-</div>
-
 
 
     
