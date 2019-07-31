@@ -1,4 +1,55 @@
-<p>
+<div class="search-div">
+    <button mat-raised-button routerLink="/admin/products/new" class="">
+        <mat-icon>add</mat-icon>Create
+    </button>
+    <mat-form-field class="search-form-field" floatLabel="never">
+        <input 
+            matInput 
+            [(ngModel)]="query"
+            (keyup)="filter()" 
+            placeholder="Search..."
+            autocomplete="off"> 
+        <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="query" (click)="onSearchClear()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+</div>
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="listData" matSort >
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+            <td mat-cell *matCellDef="let element">{{element.title}}</td>
+        </ng-container>
+        <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+                <td mat-cell *matCellDef="let element">{{element.price | currency:"₹":"symbol"}}</td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef>Action</th>
+                <td mat-cell *matCellDef="let element">
+                    <a [routerLink]="['/admin/products/']">
+                        <span style="color: blue;">
+                            <i class="material-icons">edit</i>
+                        </span>
+                    </a>
+                </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns :displayedColumns"></tr>
+    </table>
+    <mat-paginator 
+        [length]="100"
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10]"
+        showFirstLastButtons>
+    </mat-paginator>
+</div>
+
+<br><br>
+
+
+<!-- <p>
     <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
 </p>
 <p>
@@ -28,4 +79,5 @@
             </td>
         </tr>
     </tbody>
-</table>
+</table> -->
+

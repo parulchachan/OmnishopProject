@@ -12,7 +12,7 @@ import { Product } from 'src/app/models/product';
 })
 export class ProductFormComponent {
   categories$; 
-  product:Product;
+  product={};
   id;
   image;
   constructor(    
@@ -41,9 +41,7 @@ export class ProductFormComponent {
   async upload(event: any){
     const file: File=event.target.files[0];
     const metaData={'contentType': file.type};
-    debugger;
     this.image= await this.productService.uploadPhoto(file,metaData);
-    debugger;
     console.log('image='+this.image);
     this.product['imageUrl']=this.image;
     }

@@ -1,6 +1,7 @@
 import { ProductService } from './../../product.service';
-import { Component,  OnDestroy } from '@angular/core';
+import { Component,  OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { MatTableDataSource, MatSort, MatPaginator} from '@angular/material';
 
 @Component({
   selector: 'app-admin-products',
@@ -9,26 +10,42 @@ import { Subscription } from 'rxjs';
 })
 export class AdminProductsComponent implements OnDestroy {
   subscription: Subscription;
-  
   products=[];
   filteredProducts=[];
-  id;
+  listData:MatTableDataSource<any>;
+  query: string;
+  displayedColumns: string[]=['title','price','action'];
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
+
+
   constructor(private productService: ProductService) {
     this.subscription=this.productService.getAll().snapshotChanges().subscribe(
       list=>{
-        let array=list.map(item=>{
+        this.products=list.map(item=>{
           return{
             key: item.key,
             ...item.payload.val()
           };
         });
-        this.filteredProducts=this.products=array;
+        this.listData= new MatTableDataSource(this.products);
+        this.listData.sort = this.sort;
+        this.listData.paginator=this.paginator;
       });
   }
 
-  filter(query: string){
-    this.filteredProducts=(query) ?
-      this.products.filter(p=> p.title.toLowerCase().includes(query.toLowerCase( ))) : this.products;
+  onSearchClear(){
+    this.query="";
+    this.filter();
+  }
+
+  filter(){
+    this.filteredProducts=(this.query) ?
+      this.products.filter(p=> p.title.toLowerCase().includes(this.query.toLowerCase( ))) : this.products;
+      this.listData= new MatTableDataSource(this.filteredProducts);
+      this.listData.sort = this.sort;
+      this.listData.paginator=this.paginator;
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

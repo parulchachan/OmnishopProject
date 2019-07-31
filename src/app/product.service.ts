@@ -36,15 +36,11 @@ export class ProductService {
   uploadPhoto(file,metaData){
     const storageRef: firebase.storage.Reference= firebase.storage().ref('/photos/products/').child(file.name);
     var task= storageRef.put(file,metaData);
-    debugger;
     task.on("state_changed",(snapshot) =>  {
       var percentage= (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-     debugger;
       if(percentage==100){
       storageRef.getDownloadURL().then((url: string)=>{
-        debugger;
         console.log(url);
-        debugger;
         return url;
         });
       } 

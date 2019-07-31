@@ -44,7 +44,9 @@ import { ProductFilterComponent } from './products/product-filter/product-filter
 import { ProductCardComponent } from './product-card/product-card.component';
 
 import {FlexLayoutModule} from '@angular/flex-layout'
-import {MatButtonModule, MatIconModule,MatTableModule} from '@angular/material';
+import {MatButtonModule, MatIconModule,MatTableModule,MatPaginatorModule,MatSortModule,MatFormFieldModule,
+  MatInputModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'           //importing for mat-sort
 import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 import { ShoppingCartSummaryComponent } from './shopping-cart-summary/shopping-cart-summary.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
@@ -156,7 +158,12 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatIconModule,
     MatTableModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    MatPaginatorModule,
+    MatSortModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
 
   exports: [
