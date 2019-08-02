@@ -15,7 +15,12 @@ import { Order } from '../models/order';
   styleUrls: ['./check-out.component.css']
 })
 export class CheckOutComponent implements OnInit, OnDestroy{ 
-  shipping={};
+  shipping:Shipping={
+    name:"",
+    addressLine1:"",
+    addressLine2: "",
+    city: ""
+  };
   cart: ShoppingCart; 
   cartSubscription: Subscription;
   userSubscription: Subscription;
