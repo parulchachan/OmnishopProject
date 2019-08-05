@@ -115,7 +115,12 @@ const appRoutes: Routes = [
     path:'admin/orders',
     component: AdminOrdersComponent,
     canActivate:[AuthGaurdService,AdminAuthGaurdService]
+  },
+  {
+    path:'*',
+    component:ProductsComponent
   }
+
  ];
 
 
