@@ -13,7 +13,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th></th>
+                <th>Image</th>
                 <th>Product</th>
                 <th class="text-center">Quantity</th>
                 <th class="text-right">Price</th>
@@ -21,13 +21,13 @@
         </thead>
         <tbody>
             <tr *ngFor="let item of cart.items">
-                <td>
+                <td style="vertical-align: middle;">
                     <img 
                         [src]="item.product.imageUrl" 
                         class="thumbnail border border-secondary">
                 </td>
-                <td style="vertical-align: middle;">{{item.product.title}}</td>
-                <td style="vertical-align: middle;">
+                <td class="top" style="vertical-align: middle;">{{item.product.title}}</td>
+                <td class="top" style="vertical-align: middle;">
                     <product-quantity
                         [product]="item.product" [shopping-cart]="cart">
                     </product-quantity>

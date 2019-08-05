@@ -118,6 +118,7 @@ const appRoutes: Routes = [
   },
   {
     path:'*',
+    redirectTo:'',
     component:ProductsComponent
   }
 

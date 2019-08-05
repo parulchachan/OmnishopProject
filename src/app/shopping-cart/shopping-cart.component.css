@@ -4,3 +4,20 @@
     border-radius:100%;
     background-size: cover;
 }
+@media only screen and (max-width: 767px){
+    .top{
+        vertical-align:top;
+    }
+    .th button{
+        block-size: 16px
+    }
+    td,th{
+        font-size: 12px;
+    }
+    .thumbnail{
+        width: 40px;
+        height: 40px;
+        border-radius:100%;
+        background-size: cover;    
+    }
+}
