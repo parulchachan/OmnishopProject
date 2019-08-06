@@ -117,7 +117,7 @@ const appRoutes: Routes = [
     canActivate:[AuthGaurdService,AdminAuthGaurdService]
   },
   {
-    path:'*',
+    path:'**',
     redirectTo:'',
     component:ProductsComponent
   }
